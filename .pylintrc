@@ -12,6 +12,7 @@ disable=
       W0703, # catching too general exception Exception
       C0209, # consider-using-f-string
       E0015, # unrecognized-option
+      C0301, # line-too-long
 
 # Clear in-memory caches upon conclusion of linting. Useful if running pylint
 # in a server-like mode.

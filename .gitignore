@@ -19,3 +19,5 @@ htmlcov/
 .ruff_cache/
 
 .env
+
+database.db
