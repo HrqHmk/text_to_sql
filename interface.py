@@ -30,7 +30,7 @@ def process_question(question: str):
 with gr.Blocks(title="Text-to-SQL ERP") as demo:
     gr.Markdown(
         """
-        # Consulta em linguagem natural sobre dados de ERP
+        # Consulta em linguagem natural sobre dados.
         Pergunte em português sobre fornecedores, pedidos de compra e notas fiscais.
         O SQL gerado é validado (somente SELECT) antes de ser executado.
         """
