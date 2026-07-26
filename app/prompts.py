@@ -28,9 +28,29 @@ Pergunta: Quantos pedidos foram cancelados no último mês?
 SQL: SELECT COUNT(*) as total_cancelados FROM pedidos_compra WHERE status = 'cancelado' AND date(data_pedido) >= date('now', '-1 month');
 """
 
+NATURAL_ANSWER_TEMPLATE = """Você é um assistente que explica resultados de consultas de ERP em português claro e direto,
+para uma pessoa que não sabe SQL.
+
+Pergunta original: {pergunta}
+
+Resultado da consulta (em formato de lista de dicionários):
+{resultado}
+
+Escreva uma resposta curta (1 a 3 frases) resumindo o resultado de forma natural.
+Se a lista estiver vazia, diga isso claramente.
+Não mencione SQL, tabelas ou nomes técnicos de colunas — fale como se estivesse
+explicando para alguém da área financeira ou de compras.
+"""
+
 def build_prompt(question: str, schema: str)-> list[dict]:
     system_prompt = SYSTEM_PROMPT_TEMPLATE.format(schema=schema)
     return [
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": f"Pergunta: {question}\nSQL:"}
+    ]
+
+def build_prompt_answer(question: str, result: list[dict])-> list[dict]:
+    content = NATURAL_ANSWER_TEMPLATE.format(pergunta=question, resultado = result)
+    return [
+        {"role": "user", "content": content}
     ]
