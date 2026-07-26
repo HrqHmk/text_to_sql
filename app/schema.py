@@ -1,4 +1,3 @@
-import os
 import sqlite3
 
 def get_schema_description(db_path: str):
