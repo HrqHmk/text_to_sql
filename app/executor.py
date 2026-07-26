@@ -1,15 +1,10 @@
-import os
 import sqlite3
-from dotenv import load_dotenv
-
-load_dotenv()
-DB_PATH = os.getenv("DB_PATH")
 
 class ExecuteSQLError(Exception):
     pass
 
-def execute_sql(sql: str)-> list[dict]:
-    uri_ro = f"file:{DB_PATH}?mode=ro"
+def execute_sql(db_path: str, sql: str)-> list[dict]:
+    uri_ro = f"file:{db_path}?mode=ro"
     connection = sqlite3.connect(uri_ro, uri=True)
     try:
         cursor = connection.cursor()

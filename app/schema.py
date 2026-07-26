@@ -1,11 +1,8 @@
 import os
 import sqlite3
-from dotenv import load_dotenv
 
-load_dotenv()
-
-def get_schema_description():
-    conn = sqlite3.connect(os.getenv("DB_PATH"))
+def get_schema_description(db_path: str):
+    conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
     # Get the list of tables in the database
